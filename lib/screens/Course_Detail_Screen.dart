@@ -7,9 +7,9 @@ import 'package:educator/screens/New_Course_Screen.dart';
 
 import 'package:educator/services/rest_api_service.dart';
 
-import 'package:educator/sqlite/course_info.dart';
+import 'package:educator/Model/course_info.dart';
 import 'package:educator/sqlite/db_helper.dart';
-import 'package:educator/sqlite/module_info.dart';
+import 'package:educator/Model/module_info.dart';
 
 import 'Courses_Home_Screen.dart';
 

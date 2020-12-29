@@ -1,15 +1,23 @@
+import 'package:educator/Model/CourseProvider.dart';
 import 'package:educator/screens/Course_Detail_Screen.dart';
 import 'package:educator/screens/SplashScreen.dart';
 import 'package:educator/screens/Courses_Home_Screen.dart';
 import 'package:educator/screens/Module_Details_Screen.dart';
 import 'package:educator/screens/New_Course_Screen.dart';
 import 'package:educator/services/rest_api_service.dart';
-import 'package:educator/sqlite/course_info.dart';
+import 'package:educator/Model/course_info.dart';
 import 'package:educator/sqlite/db_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'bloc/course_home_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(DataProvider(child: MyApp()));
+  // runApp(CoursesBloc(child: MyApp()));
+
+  // runApp(ChangeNotifierProvider<DataProvider>(
+  //     create: (context) => DataProvider(), child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {

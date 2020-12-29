@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:educator/sqlite/course_info.dart';
-import 'package:educator/sqlite/module_info.dart';
+import 'package:educator/Model/course_info.dart';
+import 'package:educator/Model/module_info.dart';
 import 'package:http/http.dart' as http;
 
 //To get all modules through API(GET)

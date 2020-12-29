@@ -1,3 +1,5 @@
+import 'package:educator/Model/CourseProvider.dart';
+import 'package:educator/bloc/course_home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +9,8 @@ import 'package:educator/screens/Course_Detail_Screen.dart';
 
 import 'package:educator/services/rest_api_service.dart';
 import 'package:educator/sqlite/db_helper.dart';
-import 'package:educator/sqlite/course_info.dart';
+import 'package:educator/Model/course_info.dart';
+import 'package:provider/provider.dart';
 
 class Courses_Home extends StatefulWidget {
   static const routeName = '/coursesHome';
@@ -21,6 +24,7 @@ class _Courses_HomeState extends State<Courses_Home> {
   Stream<List<Course_Info>> _coursesStream;
   DbHelper _courseHelper = DbHelper();
 
+  final CoursesBloc coursesBloc = CoursesBloc();
   // _create/update course stream
   void _createCoursesStream() {
     _courses = _courseHelper.getCourses();
@@ -33,9 +37,10 @@ class _Courses_HomeState extends State<Courses_Home> {
 
   @override
   void initState() {
-    _createCoursesStream();
-    _courses = _courseHelper.getCourses();
-    _coursesStream = Stream.fromFuture(_courses);
+    //COMMENTING THIS WHILE TRYING USING BLOC
+    // _createCoursesStream();
+    // _courses = _courseHelper.getCourses();
+    // _coursesStream = Stream.fromFuture(_courses);
     super.initState();
   }
 
@@ -46,6 +51,10 @@ class _Courses_HomeState extends State<Courses_Home> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO Delete following two lines
+    var providerCourse = DataProvider.of(context);
+    print(providerCourse);
+
     return Scaffold(
       body: Column(
         children: [
@@ -122,7 +131,7 @@ class _Courses_HomeState extends State<Courses_Home> {
           ),
           Courses_Grid(
             courses: _courses,
-            coursesStream: _coursesStream,
+            coursesStream: providerCourse.coursesStream,
             refreshPage: refreshPage,
           ),
         ],
@@ -150,6 +159,7 @@ class Courses_Grid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: StreamBuilder(
+        initialData: [],
         stream: coursesStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:educator/sqlite/course_info.dart';
+import 'package:educator/Model/course_info.dart';
 import 'package:educator/sqlite/db_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

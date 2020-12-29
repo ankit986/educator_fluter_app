@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:educator/services/rest_api_service.dart';
 
 import 'package:educator/sqlite/db_helper.dart';
-import 'package:educator/sqlite/module_info.dart';
+import 'package:educator/Model/module_info.dart';
 
 class Module_Details extends StatefulWidget {
   static const routeName = '/moduleDetails';

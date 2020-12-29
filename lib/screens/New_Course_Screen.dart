@@ -1,3 +1,4 @@
+import 'package:educator/bloc/course_home_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:educator/screens/Courses_Home_Screen.dart';
@@ -5,7 +6,7 @@ import 'package:educator/screens/Courses_Home_Screen.dart';
 import 'package:educator/services/rest_api_service.dart';
 
 import 'package:educator/sqlite/db_helper.dart';
-import 'package:educator/sqlite/course_info.dart';
+import 'package:educator/Model/course_info.dart';
 
 class New_Course extends StatefulWidget {
   static const routeName = '/newCourse';
@@ -22,6 +23,8 @@ class _New_CourseState extends State<New_Course> {
   final _formKey = GlobalKey<FormState>();
   final DbHelper _DbHelper = DbHelper();
   Future<List<Course_Info>> _courses;
+
+  final CoursesBloc coursesBloc = CoursesBloc();
 
   final _course_titleController = TextEditingController();
   final _course_priceController = TextEditingController();
@@ -74,7 +77,8 @@ class _New_CourseState extends State<New_Course> {
         course_price: _course_price);
 
     //Insert Course into Local Database
-    _DbHelper.insertCourse(courseInfo);
+    // _DbHelper.insertCourse(courseInfo);
+    coursesBloc.addCoursesBloc(courseInfo);
 
     CourseInfoList courseInfoList = new CourseInfoList(courses: [courseInfo]);
 

@@ -3,8 +3,8 @@ import 'package:sqflite/sqlite_api.dart';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 
-import 'course_info.dart';
-import 'module_info.dart';
+import '../Model/course_info.dart';
+import '../Model/module_info.dart';
 
 final String tableCourse = 'courses';
 final String tableModule = 'modules';
@@ -63,7 +63,7 @@ class DbHelper {
   }
 
   //For Courses Table
-  void insertCourse(Course_Info courseInfo) async {
+  Future insertCourse(Course_Info courseInfo) async {
     var db = await database;
     print(courseInfo.toJson());
     var result = await db.insert(
@@ -71,6 +71,7 @@ class DbHelper {
       courseInfo.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    return result;
   }
 
   Future<List<Course_Info>> getCourses() async {
@@ -110,8 +111,21 @@ class DbHelper {
         .delete(tableCourse, where: '$course_id = ?', whereArgs: [id]);
   }
 
+  Future<int> updateCourse(Course_Info courseInfo) async {
+    var db = await database;
+
+    String updateID = courseInfo.course_id;
+
+    print("UPDATING COURSE IN DB");
+    print(updateID);
+    var result = await db.update(tableCourse, courseInfo.toJson(),
+        where: '$course_id = ?', whereArgs: [updateID]);
+
+    return result;
+  }
+
   //For Modules Table
-  void insertModule(Module_Info moduleInfo) async {
+  Future insertModule(Module_Info moduleInfo) async {
     var db = await database;
     print(moduleInfo.toJson());
     var result = await db.insert(
@@ -177,19 +191,6 @@ class DbHelper {
     String updateID = moduleInfo.module_id;
     var result = await db.update(tableModule, moduleInfo.toJson(),
         where: '$module_id = ?', whereArgs: [updateID]);
-
-    return result;
-  }
-
-  Future<int> updateCourse(Course_Info courseInfo) async {
-    var db = await database;
-
-    String updateID = courseInfo.course_id;
-
-    print("UPDATING COURSE IN DB");
-    print(updateID);
-    var result = await db.update(tableCourse, courseInfo.toJson(),
-        where: '$course_id = ?', whereArgs: [updateID]);
 
     return result;
   }
