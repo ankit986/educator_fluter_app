@@ -65,13 +65,13 @@ class DbHelper {
   //For Courses Table
   Future insertCourse(Course_Info courseInfo) async {
     var db = await database;
-    print(courseInfo.toJson());
+
     var result = await db.insert(
       tableCourse,
       courseInfo.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    return result;
+    print("db.insert");
   }
 
   Future<List<Course_Info>> getCourses() async {
@@ -86,6 +86,8 @@ class DbHelper {
       _courses.add(courseInfo);
     });
 
+    print("Future<List<Course_Info>>");
+    print(_courses);
     return _courses;
   }
 
@@ -133,6 +135,7 @@ class DbHelper {
       moduleInfo.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    return result;
   }
 
   Future<List<Module_Info>> getModules() async {

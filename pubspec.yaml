@@ -35,6 +35,8 @@ dependencies:
   uuid: ^2.2.2
   http: ^0.12.2
   provider: ^3.0.0
+  connectivity: ^2.0.2
+  data_connection_checker: ^0.3.4
 
 
 

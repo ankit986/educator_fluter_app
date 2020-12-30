@@ -14,7 +14,7 @@ class DataProvider extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => true;
+  bool updateShouldNotify(_) => true;
 
   Stream<List<Course_Info>> get coursesStream => coursesBloc.coursesStream;
   StreamSink<List<Course_Info>> get coursesSink => coursesBloc.coursesSink;

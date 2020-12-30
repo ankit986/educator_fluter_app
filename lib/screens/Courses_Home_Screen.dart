@@ -37,10 +37,10 @@ class _Courses_HomeState extends State<Courses_Home> {
 
   @override
   void initState() {
-    //COMMENTING THIS WHILE TRYING USING BLOC
-    // _createCoursesStream();
-    // _courses = _courseHelper.getCourses();
-    // _coursesStream = Stream.fromFuture(_courses);
+    // COMMENTING THIS WHILE TRYING USING BLOC
+    _createCoursesStream();
+    _courses = _courseHelper.getCourses();
+    _coursesStream = Stream.fromFuture(_courses);
     super.initState();
   }
 
@@ -131,7 +131,9 @@ class _Courses_HomeState extends State<Courses_Home> {
           ),
           Courses_Grid(
             courses: _courses,
-            coursesStream: providerCourse.coursesStream,
+
+            // coursesStream: providerCourse.coursesStream,
+            coursesStream: _coursesStream,
             refreshPage: refreshPage,
           ),
         ],

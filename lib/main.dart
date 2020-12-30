@@ -53,7 +53,6 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // initialRoute: Courses_Home.routeName,
       initialRoute: Splash_Screen.routeName,
       routes: {
         Courses_Home.routeName: (context) => Courses_Home(),
