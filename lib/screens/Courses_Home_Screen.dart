@@ -28,6 +28,7 @@ class _Courses_HomeState extends State<Courses_Home> {
   // _create/update course stream
   void _createCoursesStream() {
     print("Printing in HOme Screen ");
+    print("printing in courses home screen");
     _courses = _courseHelper.getCourses();
     setState(() {
       //Convert  Future<List<Course_Info>>  into  Stream<List<Course_Info>>
