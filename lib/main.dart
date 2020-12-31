@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'bloc/course_home_bloc.dart';
 
 void main() {
+  print("printing");
   runApp(DataProvider(child: MyApp()));
   // runApp(CoursesBloc(child: MyApp()));
 
