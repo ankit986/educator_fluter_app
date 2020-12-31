@@ -54,8 +54,9 @@ class _Course_DetailState extends State<Course_Detail> {
         setState(() {
           numberOfModules = value.length.toString();
         });
-      }).catchError(((onError) {
-        print(onError);
+      }).catchError(((error) {
+        print("Printing error");
+        print(error);
       }));
 
       //Getting modules from local server

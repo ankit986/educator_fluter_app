@@ -27,6 +27,7 @@ class _Courses_HomeState extends State<Courses_Home> {
   final CoursesBloc coursesBloc = CoursesBloc();
   // _create/update course stream
   void _createCoursesStream() {
+    print("Printing in dc");
     _courses = _courseHelper.getCourses();
     setState(() {
       //Convert  Future<List<Course_Info>>  into  Stream<List<Course_Info>>
